@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: 0;
+            outline: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: absolute;
+            width: 100%;
+            top: -60.53px;
+            background-color: black;
+            color: #ffff;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .menu {
+            width: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu ul {
+            width: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu ul a {
+            color: #ffff;
+            text-decoration: none;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            display: flex;
+            width: 100%;
+        }
+
+        .common {
+            position: relative  ;
+            width: 50%;
+        }
+
+        .men .img-overlay {
+            position: absolute;
+            top: 0%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 9;
+        }
+
+        .women .img-overlay {
+            position: absolute;
+            top: 0%;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 9;
+        }
+
+        .img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        img {
+
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
+        }
+
+        .text {
+            position: relative;
+            bottom: 280px;
+            left: 0;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+        }
+
+        .text h1 {
+            font-size: 82px;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .text h5 {
+            font-size: 28px;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 22;
+        }
+
+        .btn a {
+            display: inline-block;
+            border: 1px solid #fff;
+            padding: 25px 60px;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            opacity: 0;
+            transition: all ease 0.5s;
+        }
+
+        .btn a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .common:hover .btn a {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h4>Logo</h4>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">All Clothing</a></li>
+                <li><a href="#">New In</a></li>
+                <li><a href="#">Editorial</a></li>
+                <li><a href="#">Outwear</a></li>
+                <li><a href="#">Collection</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="content">
+        <div class="men common">
+            <div class="img">
+                <img src="men.jpg" alt="e">
+                <div class="img-overlay"></div>
+            </div>
+            <div class="text">
+                <h1>Men</h1>
+                <h5>Fashion</h5>
+            </div>
+            <div class="btn">
+                <a href="#">Shop now</a>
+            </div>
+        </div>
+        <div class="women common">
+            <div class="img">
+                <img src="women.jpg" alt="">
+                <div class="img-overlay"></div>
+            </div>
+            <div class="text">
+                <h1>Women</h1>
+                <h5>Fashion</h5>
+            </div>
+            <div class="btn">
+                <a href="#">Shop now</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+
+        const tl = gsap.timeline({ ease: "Power1.easeInOut" });
+        tl.from(".img img", {
+            opacity: 1,
+        })
+        tl.to(".men .img-overlay", {
+            duration: 1.5,
+            y: "100%"
+        })
+        tl.to(".women .img-overlay", {
+            duration: 1.5,
+            y: "100%"
+        }, "-=.7");
+        tl.from(".img img", {
+            opacity: 0,
+            duration: 1,
+            scale: 1.5,
+            stagger: .2
+        })
+        tl.from(".text h1", {
+            opacity: 0,
+            duration: 1,
+            y: 50
+        })
+        tl.from(".text h5", {
+            opacity: 0,
+            duration: 1,
+            y: 50
+        }, "-=.5 ")
+        tl.to(".content", {
+            y: 60.53
+        })
+        tl.to("header", {
+            y: 60.53,
+            duration: 0.7
+        })
+        tl.from("header .logo", {
+            opacity: 0,
+            y: -80
+        })
+        tl.from(".menu ul li", {
+            y: -80,
+            stagger: .2,
+            duration: 1
+        }, "-=.4")
+    </script>
+
+</body>
+
+</html>
